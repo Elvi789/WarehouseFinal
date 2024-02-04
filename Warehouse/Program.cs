@@ -2,12 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Security;
 using Warehouse.Data;
+using Warehouse.Repository;
+using Warehouse.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ItemRepository, ItemRepository>();//krijon nje fusheveprim per repositorin
 
+builder.Services.AddTransient<IItemService, ItemService>(); //krijon nje fusheveprim per servisin
 //ketu i thua qe web app do te njohi ne database te ri dhe ky server i ketej database do reveroj ne "Server=DESKTOP-8EJ06EC\\SQLEXPRESS;Database=WarehouseDatabase;Trusted_Connection=True;TrustServerCertificate=True;"
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {

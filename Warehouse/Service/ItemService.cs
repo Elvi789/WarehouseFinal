@@ -3,7 +3,7 @@ using Warehouse.Repository;
 
 namespace Warehouse.Service
 {
-    public class ItemService
+    public class ItemService : IItemService
     {
         public readonly ItemRepository _itemRepository;
 
