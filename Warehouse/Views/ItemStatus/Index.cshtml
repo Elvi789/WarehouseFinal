@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Warehouse.Data.ItemStatus>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.inWarehouse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvolvePayments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemStatusColor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.inWarehouse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvolvePayments)
+            </td>
+            <td>
+                    <div style="background-color: @item.ItemStatusColor">
+                        @if (item.ItemStatusColor == "#ffffff")
+                        {
+                            <span style="color:black">@item.Name</span>
+                        }
+                        else
+                        {
+                            <span style="color:white">@item.Name</span>
+                        }
+                </div>
+                
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
